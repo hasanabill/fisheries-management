@@ -27,6 +27,10 @@ struct Projects
 
 // declaring file pointer for CRUD operation
 FILE *filetooperate;
+
+// declaring a structure variable
+struct Projects projectInfo;
+
 // main function of the program
 int main()
 {
@@ -87,7 +91,7 @@ menuinput:
 // function to ensure security
 int auth()
 {
-    char fixedPassword[15] = "12346789";
+    char fixedPassword[15] = "12345";
     char userPassword[15];
     printf("Enter Password: ");
     fflush(stdin);
@@ -113,7 +117,7 @@ void manageProject()
     // user input
     printf("Choose: ");
 
-subinput:
+subInput:
     fflush(stdin);
     scanf("%d", &userChoice);
 
@@ -137,7 +141,7 @@ subinput:
 
     default:
         printf("Invalid choice! \nEnter valid choice: ");
-        goto subinput;
+        goto subInput;
     }
 }
 void submenu()
@@ -158,4 +162,117 @@ void submenu()
     {
         printf("you choose 2");
     }
+}
+
+void createProject()
+{
+    system("cls");
+    struct Projects pr;
+
+    printf("\n\n****** Mazumdar's Agro & Fisheries Admin Panel ******  \n");
+
+    printf("\nProvide all necessary information about the project\n\n");
+    printf("Please Enter Project ID: ");
+    fflush(stdin);
+    scanf("%d", &projectInfo.id);
+    printf("Please Enter Project Type (Fish/Poultry): ");
+    fflush(stdin);
+    gets(projectInfo.projectType);
+    printf("Please Enter Project Name/Title: ");
+    fflush(stdin);
+    gets(projectInfo.projectName);
+    printf("Please Provide Short Details About Projcet: ");
+    fflush(stdin);
+    gets(projectInfo.description);
+    printf("Please Enter Project Start Date: ");
+    fflush(stdin);
+    gets(projectInfo.startDate);
+    printf("Please Enter Project End Date: ");
+    fflush(stdin);
+    gets(projectInfo.endDate);
+    printf("Please Enter the Estimated Budget: ");
+    fflush(stdin);
+    scanf("%d", &projectInfo.estBudget);
+
+    saveProject();
+
+add_record:
+    printf("\n\t\t\t1.Do You Want To Add nnother new Project info?\n\t\t\t0.Project Menu");
+    printf("\n\t\t\tEnter Your Choose: ");
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1)
+    {
+        createProject();
+    }
+    else if (choice == 0)
+    {
+        projectMenu();
+    }
+    else
+    {
+        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
+        goto add_record;
+    }
+}
+
+void saveProject()
+{
+    filetooperate = fopen("projectinfo.txt", "a");
+    fwrite(&projectInfo, sizeof(struct Projects), 1, filetooperate);
+    if (fwrite != 0)
+    {
+        printf("Succesfully saved");
+    }
+    else
+    {
+        printf("Something went wrong");
+    }
+    fclose(filetooperate);
+}
+
+void viewAllProject()
+{
+    system("cls");
+    filetooperate = fopen("projectinfo.txt", "r");
+    printf("\n*#$All Project Information$#*\n");
+    printf(" **Project ID** \t**Project Title** \t**Start Date** \t**End Date**");
+
+    while (fread(&projectInfo, sizeof(struct Projects), 1, filetooperate))
+    {
+        printf("\n%d\t\t%s\t\t%s\t\t%s\n", projectInfo.id, projectInfo.projectName, projectInfo.startDate, projectInfo.endDate);
+    }
+    fclose(filetooperate);
+
+add_record1:
+    printf("\n\t\t\t1.Project Menu\n\t\t\t2.Main Menu\n\t\t\t3. Exit");
+    printf("\n\t\t\tEnter Your Choose: ");
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1)
+    {
+        manageProject();
+    }
+    else if (choice == 0)
+    {
+        menu();
+    }
+    else if (choice == 3)
+    {
+        exit(0);
+    }
+    else
+    {
+        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
+        goto add_record1;
+    }
+}
+
+void updateProject()
+{
+    printf("update");
+}
+void deleteProject()
+{
+    printf("delete");
 }
