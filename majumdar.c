@@ -207,7 +207,7 @@ add_record:
     }
     else if (choice == 0)
     {
-        projectMenu();
+        manageProject();
     }
     else
     {
@@ -249,22 +249,23 @@ add_record1:
     printf("\n\t\t\tEnter Your Choose: ");
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         manageProject();
-    }
-    else if (choice == 0)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto add_record1;
+        break;
     }
 }
 
