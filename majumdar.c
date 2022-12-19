@@ -6,6 +6,8 @@
 void menu();
 int auth();
 void submenu();
+
+// functions for managing projects
 void manageProject();
 void createProject();
 void saveProject();
@@ -53,8 +55,8 @@ login:
 void menu()
 {
     system("cls");
-    printf("\n\n\n **** Mazumdar's Agro & Frishries Admin Panel. **** \n   1. Manage Projects  \n   2. Manage Purchases.\n   2. Manage Feeding History. \n   4. Staffs. \n   5. Back to home page.\n   0. Exit.");
-    printf("\n\nChoose the options what you want to do (1/2/3/4/5/6): ");
+    printf("\n\n\n **** Mazumdar's Agro & Frishries Admin Panel. **** \n\t1. Manage Projects  \n\t2. Manage Purchases.\n\t3. Manage Feeding History. \n\t4. Manage Employee \n\t5. Manage Sells \n\t6. Generate Report \n\t7. Price Estimation \n\t0. Exit.");
+    printf("\n\nChoose the options what you want to do (1/2/3/4/5/6/7/0): ");
 
     int userChoice;
 
@@ -271,9 +273,138 @@ add_record1:
 
 void updateProject()
 {
-    printf("update");
+    system("cls");
+    printf("\n Update Project Information\n");
+
+    printf("Please enter project id you want to modify: ");
+    int pId;
+    fflush(stdin);
+    scanf("%d", &pId);
+    filetooperate = fopen("projectInfo.txt", "r+");
+    int found = 0;
+    while (fread(&projectInfo, sizeof(struct Projects), 1, filetooperate))
+    {
+        if (projectInfo.id == pId)
+        {
+            found = 1;
+            printf("\nProvide all necessary information about the project\n\n");
+            printf("Please Enter Project Type (Fish/Poultry): ");
+            fflush(stdin);
+            gets(projectInfo.projectType);
+            printf("Please Enter Project ID: ");
+            fflush(stdin);
+            scanf("%d", &projectInfo.id);
+            printf("Please Enter Project Name/Title: ");
+            fflush(stdin);
+            gets(projectInfo.projectName);
+            printf("Please Provide Short Details About Project: ");
+            fflush(stdin);
+            gets(projectInfo.description);
+            printf("Please Enter Project Start Date: ");
+            fflush(stdin);
+            gets(projectInfo.startDate);
+            printf("Please Enter Project End Date: ");
+            fflush(stdin);
+            gets(projectInfo.endDate);
+            printf("Please Enter the Estimated Budget: ");
+            fflush(stdin);
+            scanf("%f", &projectInfo.estBudget);
+            fseek(filetooperate, -sizeof(projectInfo), SEEK_CUR);
+            fwrite(&projectInfo, sizeof(struct Projects), 1, filetooperate);
+            break;
+        }
+    }
+
+    fclose(filetooperate);
+    if (found == 1)
+    {
+        printf("\nProject information updated\n");
+    }
+    else
+    {
+        printf("\nProject with the given IID  not found in file\n");
+    }
+
+updateSub:
+    printf("\n\t\t\t1. Do You Want To Modify Another Project info?\n\t\t\t2. Project Menu\n\t\t\t3. Main Menu");
+    printf("\n\t\t\tEnter Your Choose: ");
+
+    int choice;
+    scanf("%d", &choice);
+    if (choice == 1)
+    {
+        updateProject();
+    }
+    else if (choice == 2)
+    {
+        manageProject();
+    }
+    else if (choice == 3)
+    {
+        menu();
+    }
+    else
+    {
+        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
+        goto updateSub;
+    }
 }
 void deleteProject()
 {
-    printf("delete");
+    FILE *removeFile;
+
+    int pId;
+    printf("Enter The project id :");
+    fflush(stdin);
+    scanf("%d", &pId);
+
+    filetooperate = fopen("projectInfo.txt", "r+");
+
+    removeFile = fopen("temp.txt", "a+");
+    if (filetooperate == NULL)
+    {
+        fprintf(stderr, "can't open the file");
+        exit(0);
+    }
+
+    while (fread(&projectInfo, sizeof(struct Projects), 1, filetooperate))
+    {
+        if (projectInfo.id != pId)
+        {
+            fwrite(&projectInfo, sizeof(struct Projects), 1, removeFile);
+        }
+    }
+
+    fclose(filetooperate);
+    fclose(removeFile);
+
+    remove("projectInfo.txt");
+    rename("temp.txt", "projectInfo.txt");
+
+    printf("\nProject Info  Successfully Deleted\n");
+
+deleteSub:
+    printf("\n\t\t\t1. Do You Want To delete Another  Project info?\n\t\t\t2. Project Menu\n\t\t\t3. Main Menu");
+    printf("\n\t\t\tEnter Your Choose: ");
+
+    int choice;
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        deleteProject();
+    }
+    else if (choice == 2)
+    {
+        manageProject();
+    }
+    else if (choice == 3)
+    {
+        menu();
+    }
+    else
+    {
+        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
+        goto deleteSub;
+    }
 }
