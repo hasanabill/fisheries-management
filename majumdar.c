@@ -449,24 +449,25 @@ deleteSub:
     int choice;
     scanf("%d", &choice);
 
-    if (choice == 1)
+    switch (choice)
     {
+    case 1:
         deleteProject();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         manageProject();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto deleteSub;
+        break;
     }
 }
+// manage projects ends here
 
 // Functions of expense management starts here
 
@@ -475,13 +476,13 @@ void expenseMenu()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
-    printf("A. Add an Expense\n");
-    printf("B. View all Expenses\n");
-    printf("C. Update existing expense info\n");
-    printf("D. Delete a expense\n");
-    printf("E. Back to Main Menu\n\n");
+    printf("1. Add an Expense\n");
+    printf("2. View all Expenses\n");
+    printf("3. Update existing expense info\n");
+    printf("4. Delete a expense\n");
+    printf("0. Back to Main Menu\n\n");
 
-returnToExpenseMenu:
+expenseMenu:
     printf("Choose the Option(A/B/C/D/E): ");
 
     // Choose User Input
@@ -492,25 +493,25 @@ returnToExpenseMenu:
 
     switch (menuChoice)
     {
-    case 'A':
+    case 1:
         addNewExpense();
         break;
-    case 'B':
+    case 2:
         viewAllExpenses();
         break;
-    case 'C':
+    case 3:
         updateExpenseInfo();
         break;
-    case 'D':
+    case 4:
         deleteExpenseInfo();
         break;
-    case 'E':
+    case 0:
         printf("\nBack Successfully\n");
         menu();
         break;
     default:
         printf("\nInvalid Input!\nTry again!!\n");
-        goto returnToExpenseMenu;
+        goto expenseMenu;
     }
 }
 
@@ -542,24 +543,26 @@ void addNewExpense()
 
     saveExpenseInfo();
 
-redirToSubMenu:
+subMenu:
     printf("\n\t\t\t1. Do You Want To Add Another new Expense info?\n\t\t\t2. Expense Menu");
     printf("\n\t\t\tEnter Your Choose: ");
     int choice;
     fflush(stdin);
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         addNewExpense();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         expenseMenu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToSubMenu;
+        goto subMenu;
+        break;
     }
 }
 
@@ -594,30 +597,31 @@ void viewAllExpenses()
     }
     fclose(fileToOperate);
 
-redirToViewSub:
-    printf("\n\t\t\t1. Expense Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+viewSub:
+    printf("\n\t\t\t1. Expense Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         expenseMenu();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToViewSub;
+        goto viewSub;
+        break;
     }
 }
 
@@ -674,28 +678,29 @@ void updateExpenseInfo()
         printf("\nExpense with the given ID  not found in file\n");
     }
 
-redirUpdateSub:
+updateSub:
     printf("\n\t\t\t1. Do You Want To Modify Another Expense info?\n\t\t\t2. Expense Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         updateFHistoryInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         fHistoryMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirUpdateSub;
+        goto updateSub;
+        break;
     }
 }
 
@@ -734,34 +739,35 @@ void deleteExpenseInfo()
     system("cls");
     printf("\nExpense Info  Successfully Deleted\n");
 
-redirDeleteSub:
+deleteSub:
     printf("\n\t\t\t1. Do You Want To delete Another Expense info?\n\t\t\t2. Expense Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
 
-    if (choice == 1)
+    switch (choice)
     {
+    case 1:
         deleteExpenseInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         expenseMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirDeleteSub;
+        goto deleteSub;
+        break;
     }
 }
 // functions of expense management ends here
 
 // functions of feeding history management starts here
+
 // fHistory menu function
 void fHistoryMenu()
 {
@@ -834,7 +840,7 @@ void addNewFHistory()
 
     saveFHistoryInfo();
 
-redirToSubMenu:
+subMenu:
     printf("\n\t\t\t1.Do You Want To Add Another new Feeding History info?\n\t\t\t2.Feeding History Menu");
     printf("\n\t\t\tEnter Your Choose: ");
     int choice;
@@ -851,7 +857,7 @@ redirToSubMenu:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToSubMenu;
+        goto subMenu;
     }
 }
 
@@ -885,7 +891,7 @@ void viewAllFHistory()
     }
     fclose(fileToOperate);
 
-redirToViewSub:
+viewSub:
     printf("\n\t\t\t1. Feeding History Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -908,7 +914,7 @@ redirToViewSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToViewSub;
+        goto viewSub;
     }
 }
 
@@ -965,7 +971,7 @@ void updateFHistoryInfo()
         printf("\nFeeding History with the given ID  not found in file\n");
     }
 
-redirUpdateSub:
+updateSub:
     printf("\n\t\t\t1. Do You Want To Modify Another Feeding History info?\n\t\t\t2. Feeding History Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -986,7 +992,7 @@ redirUpdateSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirUpdateSub;
+        goto updateSub;
     }
 }
 
@@ -1025,7 +1031,7 @@ void deleteFHistoryInfo()
     system("cls");
     printf("\nFeeding History Info  Successfully Deleted\n");
 
-redirDeleteSub:
+deleteSub:
     printf("\n\t\t\t1. Do You Want To delete Another Feeding History info?\n\t\t\t2. Feeding History Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1047,7 +1053,7 @@ redirDeleteSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirDeleteSub;
+        goto deleteSub;
     }
 }
 // functions of feeding history management ends here
@@ -1122,7 +1128,7 @@ void addNewEmployee()
 
     saveEmployeeInfo();
 
-redirToSubMenu:
+subMenu:
     printf("\n\t\t\t1.Do You Want To Add Another new Employee info?\n\t\t\t2.Employee Menu");
     printf("\n\t\t\tEnter Your Choose: ");
     int choice;
@@ -1139,7 +1145,7 @@ redirToSubMenu:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToSubMenu;
+        goto subMenu;
     }
 }
 
@@ -1174,7 +1180,7 @@ void viewAllEmployee()
     }
     fclose(fileToOperate);
 
-redirToViewSub:
+viewSub:
     printf("\n\t\t\t1. Employee Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1197,7 +1203,7 @@ redirToViewSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToViewSub;
+        goto viewSub;
     }
 }
 
@@ -1251,7 +1257,7 @@ void updateEmployeeInfo()
         printf("\nEmployee with the given ID  not found in file\n");
     }
 
-redirUpdateSub:
+updateSub:
     printf("\n\t\t\t1. Do You Want To Modify Another Employee info?\n\t\t\t2. Employee Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1272,7 +1278,7 @@ redirUpdateSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirUpdateSub;
+        goto updateSub;
     }
 }
 
@@ -1311,7 +1317,7 @@ void deleteEmployeeInfo()
     system("cls");
     printf("\nEmployee Info  Successfully Deleted\n");
 
-redirDeleteSub:
+deleteSub:
     printf("\n\t\t\t1. Do You Want To delete Another Employee info?\n\t\t\t2. Employee Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1333,7 +1339,7 @@ redirDeleteSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirDeleteSub;
+        goto deleteSub;
     }
 }
 // functions of employee management ends here
@@ -1411,7 +1417,7 @@ void addNewSells()
 
     saveSellsInfo();
 
-redirToSubMenu:
+subMenu:
     printf("\n\t\t\t1. Do You Want To Add Another new Selling info?\n\t\t\t2. Sells Menu");
     printf("\n\t\t\tEnter Your Choose: ");
     int choice;
@@ -1428,7 +1434,7 @@ redirToSubMenu:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToSubMenu;
+        goto subMenu;
     }
 }
 
@@ -1463,7 +1469,7 @@ void viewAllSells()
     }
     fclose(fileToOperate);
 
-redirToViewSub:
+viewSub:
     printf("\n\t\t\t1. Sells Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1486,7 +1492,7 @@ redirToViewSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirToViewSub;
+        goto viewSub;
     }
 }
 
@@ -1543,7 +1549,7 @@ void updateSellsInfo()
         printf("\nSelling Info with the given ID  not found in file\n");
     }
 
-redirUpdateSub:
+updateSub:
     printf("\n\t\t\t1. Do You Want To Modify Another Selling Info info?\n\t\t\t2. Sells Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1564,7 +1570,7 @@ redirUpdateSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirUpdateSub;
+        goto updateSub;
     }
 }
 
@@ -1603,7 +1609,7 @@ void deleteSellsInfo()
     system("cls");
     printf("\nSelling Info  Successfully Deleted\n");
 
-redirDeleteSub:
+deleteSub:
     printf("\n\t\t\t1. Do You Want To delete Another Selling info?\n\t\t\t2. Sells Menu\n\t\t\t3. Main Menu");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1625,7 +1631,7 @@ redirDeleteSub:
     else
     {
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirDeleteSub;
+        goto deleteSub;
     }
 }
 // functions of sells management ends here
