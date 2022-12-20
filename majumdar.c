@@ -487,9 +487,8 @@ expenseMenu:
 
     // Choose User Input
     fflush(stdin);
-    char menuChoice;
-    scanf("%c", &menuChoice);
-    menuChoice = toupper(menuChoice);
+    int menuChoice;
+    scanf("%d", &menuChoice);
 
     switch (menuChoice)
     {
@@ -773,36 +772,35 @@ void fHistoryMenu()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
-    printf("A. Add a Feeding History\n");
-    printf("B. View all Feeding History\n");
-    printf("C. Update a Feeding History info\n");
-    printf("D. Delete a Feeding History\n");
-    printf("E. Back to Main Menu\n\n");
+    printf("1. Add a Feeding History\n");
+    printf("2. View all Feeding History\n");
+    printf("3. Update a Feeding History info\n");
+    printf("4. Delete a Feeding History\n");
+    printf("0. Back to Main Menu\n\n");
 
 returnToFHistoryMenu:
-    printf("Choose the Option(A/B/C/D/E): ");
+    printf("Choose the Option(1/2/3/4/0): ");
 
     // Choose User Input
     fflush(stdin);
-    char menuChoice;
-    scanf("%c", &menuChoice);
-    menuChoice = toupper(menuChoice);
+    int menuChoice;
+    scanf("%d", &menuChoice);
 
     switch (menuChoice)
     {
-    case 'A':
+    case 1:
         addNewFHistory();
         break;
-    case 'B':
+    case 2:
         viewAllFHistory();
         break;
-    case 'C':
+    case 3:
         updateFHistoryInfo();
         break;
-    case 'D':
+    case 4:
         deleteFHistoryInfo();
         break;
-    case 'E':
+    case 5:
         printf("\nBack Successfully\n");
         menu();
         break;
@@ -846,18 +844,20 @@ subMenu:
     int choice;
     fflush(stdin);
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         addNewFHistory();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         fHistoryMenu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto subMenu;
+        break;
     }
 }
 
@@ -892,29 +892,30 @@ void viewAllFHistory()
     fclose(fileToOperate);
 
 viewSub:
-    printf("\n\t\t\t1. Feeding History Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+    printf("\n\t\t\t1. Feeding History Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         fHistoryMenu();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto viewSub;
+        break;
     }
 }
 
@@ -977,22 +978,23 @@ updateSub:
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         updateFHistoryInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         fHistoryMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto updateSub;
+        break;
     }
 }
 
@@ -1038,27 +1040,28 @@ deleteSub:
     int choice;
     scanf("%d", &choice);
 
-    if (choice == 1)
+    switch (choice)
     {
+    case 1:
         deleteFHistoryInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         fHistoryMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto deleteSub;
+        break;
     }
 }
 // functions of feeding history management ends here
 
 // functions of employee management starts here
+
 //  employee menu function
 void employeeMenu()
 {
