@@ -1357,36 +1357,35 @@ void sellsMenu()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
-    printf("A. Add A Selling Info\n");
-    printf("B. View All Sells\n");
-    printf("C. Update Existing Selling info\n");
-    printf("D. Delete A Selling Info\n");
-    printf("E. Back to Main Menu\n\n");
+    printf("1. Add A Selling Info\n");
+    printf("2. View All Sells\n");
+    printf("3. Update Existing Selling info\n");
+    printf("4. Delete A Selling Info\n");
+    printf("0. Back to Main Menu\n\n");
 
 returnToSellsMenu:
-    printf("Choose the Option(A/B/C/D/E): ");
+    printf("Choose the Option(1/2/3/4/0): ");
 
     // Choose User Input
     fflush(stdin);
-    char menuChoice;
-    scanf("%c", &menuChoice);
-    menuChoice = toupper(menuChoice);
+    int menuChoice;
+    scanf("%d", &menuChoice);
 
     switch (menuChoice)
     {
-    case 'A':
+    case 1:
         addNewSells();
         break;
-    case 'B':
+    case 2:
         viewAllSells();
         break;
-    case 'C':
+    case 3:
         updateSellsInfo();
         break;
-    case 'D':
+    case 4:
         deleteSellsInfo();
         break;
-    case 'E':
+    case 0:
         printf("\nBack Successfully\n");
         menu();
         break;
@@ -1430,18 +1429,20 @@ subMenu:
     int choice;
     fflush(stdin);
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         addNewSells();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         sellsMenu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto subMenu;
+        break;
     }
 }
 
@@ -1482,24 +1483,25 @@ viewSub:
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         sellsMenu();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto viewSub;
+        break;
     }
 }
 
@@ -1562,6 +1564,25 @@ updateSub:
 
     int choice;
     scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+        updateSellsInfo();
+        break;
+    case 2:
+        sellsMenu();
+        break;
+    case 3:
+        menu();
+        break;
+
+    default:
+        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
+        goto updateSub;
+        break;
+    }
+
     if (choice == 1)
     {
         updateSellsInfo();
@@ -1623,22 +1644,22 @@ deleteSub:
     int choice;
     scanf("%d", &choice);
 
-    if (choice == 1)
+    switch (choice)
     {
+    case 1:
         deleteSellsInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         sellsMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto deleteSub;
+        break;
     }
 }
 // functions of sells management ends here
