@@ -1067,42 +1067,41 @@ void employeeMenu()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
-    printf("A. Add A New Employee\n");
-    printf("B. View all Employees\n");
-    printf("C. Update An Existing Employee Info\n");
-    printf("D. Delete an Employee Info\n");
-    printf("E. Back to Main Menu\n\n");
+    printf("1. Add A New Employee\n");
+    printf("2. View all Employees\n");
+    printf("3. Update An Existing Employee Info\n");
+    printf("4. Delete an Employee Info\n");
+    printf("0. Back to Main Menu\n\n");
 
-returnToEmployeeMenu:
-    printf("Choose the Option(A/B/C/D/E): ");
+empMenu:
+    printf("Choose the Option(1/2/3/4/0): ");
 
     // Choose User Input
     fflush(stdin);
-    char menuChoice;
-    scanf("%c", &menuChoice);
-    menuChoice = toupper(menuChoice);
+    int menuChoice;
+    scanf("%d", &menuChoice);
 
     switch (menuChoice)
     {
-    case 'A':
+    case 1:
         addNewEmployee();
         break;
-    case 'B':
+    case 2:
         viewAllEmployee();
         break;
-    case 'C':
+    case 3:
         updateEmployeeInfo();
         break;
-    case 'D':
+    case 4:
         deleteEmployeeInfo();
         break;
-    case 'E':
+    case 0:
         printf("\nBack Successfully\n");
         menu();
         break;
     default:
         printf("\nInvalid Input!\nTry again!!\n");
-        goto returnToEmployeeMenu;
+        goto empMenu;
     }
 }
 
@@ -1137,18 +1136,20 @@ subMenu:
     int choice;
     fflush(stdin);
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         addNewEmployee();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         employeeMenu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto subMenu;
+        break;
     }
 }
 
@@ -1184,29 +1185,30 @@ void viewAllEmployee()
     fclose(fileToOperate);
 
 viewSub:
-    printf("\n\t\t\t1. Employee Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+    printf("\n\t\t\t1. Employee Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         employeeMenu();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto viewSub;
+        break;
     }
 }
 
@@ -1266,22 +1268,23 @@ updateSub:
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         updateEmployeeInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         employeeMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto updateSub;
+        break;
     }
 }
 
@@ -1327,27 +1330,28 @@ deleteSub:
     int choice;
     scanf("%d", &choice);
 
-    if (choice == 1)
+    switch (choice)
     {
+    case 1:
         deleteEmployeeInfo();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         employeeMenu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         menu();
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto deleteSub;
+        break;
     }
 }
 // functions of employee management ends here
 
 // functions of sells management start here
+
 //  sells menu function
 void sellsMenu()
 {
