@@ -1727,24 +1727,25 @@ redirReportSub:
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         generateReport();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto redirReportSub;
+        break;
     }
 }
 
@@ -1803,28 +1804,29 @@ void priceEstimate()
     }
 
 redirReportSub:
-    printf("\n\t\t\t1. Do You Want To Estimate Price For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+    printf("\n\t\t\t1. Do You Want To Estimate Price For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
     scanf("%d", &choice);
-    if (choice == 1)
+
+    switch (choice)
     {
+    case 1:
         priceEstimate();
-    }
-    else if (choice == 2)
-    {
+        break;
+    case 2:
         menu();
-    }
-    else if (choice == 3)
-    {
+        break;
+    case 3:
         system("cls");
         printf("\n\n\t\t***** Thank You !! *****\n\n");
         exit(0);
-    }
-    else
-    {
+        break;
+
+    default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
         goto redirReportSub;
+        break;
     }
 }
