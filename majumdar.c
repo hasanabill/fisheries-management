@@ -4,10 +4,12 @@
 #include <ctype.h>
 
 // functin declaration
+
+// primary function
 void menu();
 int auth();
 
-// functions for managing projects
+// managing projects functions
 void manageProject();
 void createProject();
 void saveProject();
@@ -15,41 +17,41 @@ void viewAllProject();
 void updateProject();
 void deleteProject();
 
-// functions to manage expenses
-void expenseMenu();
+// managing expenses functions
+void manageExpense();
 void addNewExpense();
 void saveExpenseInfo();
 void viewAllExpenses();
 void updateExpenseInfo();
 void deleteExpenseInfo();
 
-// functions to manage feeding history
-void fHistoryMenu();
+// managing feeding history functions
+void manageFeedHistory();
 void addNewFHistory();
 void saveFHistoryInfo();
 void viewAllFHistory();
 void updateFHistoryInfo();
 void deleteFHistoryInfo();
 
-// functions to manage employee
-void employeeMenu();
+// managing employee functions
+void manageEmployee();
 void addNewEmployee();
 void saveEmployeeInfo();
 void viewAllEmployee();
 void updateEmployeeInfo();
 void deleteEmployeeInfo();
 
-// functions to manage sells
-void sellsMenu();
-void addNewSells();
-void saveSellsInfo();
-void viewAllSells();
+// managing sells functions
+void manageSale();
+void addNewSell();
+void saveSaleInfo();
+void viewAllSales();
 void updateSellsInfo();
 void deleteSellsInfo();
 
-// functions to generate reports
+// generate reports functions
 void generateReport();
-// functions for price estimation
+// price estimate calculations
 void priceEstimate();
 
 // defining ftructure
@@ -138,16 +140,16 @@ menuinput:
         manageProject();
         break;
     case 2:
-        expenseMenu();
+        manageExpense();
         break;
     case 3:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
     case 4:
-        employeeMenu();
+        manageEmployee();
         break;
     case 5:
-        sellsMenu();
+        manageSale();
         break;
     case 6:
         generateReport();
@@ -472,7 +474,7 @@ deleteSub:
 // Functions of expense management starts here
 
 // expense menu function
-void expenseMenu()
+void manageExpense()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -555,7 +557,7 @@ subMenu:
         addNewExpense();
         break;
     case 2:
-        expenseMenu();
+        manageExpense();
         break;
 
     default:
@@ -606,7 +608,7 @@ viewSub:
     switch (choice)
     {
     case 1:
-        expenseMenu();
+        manageExpense();
         break;
     case 2:
         menu();
@@ -690,7 +692,7 @@ updateSub:
         updateFHistoryInfo();
         break;
     case 2:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
     case 3:
         menu();
@@ -751,7 +753,7 @@ deleteSub:
         deleteExpenseInfo();
         break;
     case 2:
-        expenseMenu();
+        manageExpense();
         break;
     case 3:
         menu();
@@ -768,7 +770,7 @@ deleteSub:
 // functions of feeding history management starts here
 
 // fHistory menu function
-void fHistoryMenu()
+void manageFeedHistory()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -778,7 +780,7 @@ void fHistoryMenu()
     printf("4. Delete a Feeding History\n");
     printf("0. Back to Main Menu\n\n");
 
-returnToFHistoryMenu:
+feedHistory:
     printf("Choose the Option(1/2/3/4/0): ");
 
     // Choose User Input
@@ -806,7 +808,7 @@ returnToFHistoryMenu:
         break;
     default:
         printf("\nInvalid Input!\nTry again!!\n");
-        goto returnToFHistoryMenu;
+        goto feedHistory;
     }
 }
 
@@ -851,7 +853,7 @@ subMenu:
         addNewFHistory();
         break;
     case 2:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
 
     default:
@@ -901,7 +903,7 @@ viewSub:
     switch (choice)
     {
     case 1:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
     case 2:
         menu();
@@ -985,7 +987,7 @@ updateSub:
         updateFHistoryInfo();
         break;
     case 2:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
     case 3:
         menu();
@@ -1046,7 +1048,7 @@ deleteSub:
         deleteFHistoryInfo();
         break;
     case 2:
-        fHistoryMenu();
+        manageFeedHistory();
         break;
     case 3:
         menu();
@@ -1063,7 +1065,7 @@ deleteSub:
 // functions of employee management starts here
 
 //  employee menu function
-void employeeMenu()
+void manageEmployee()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -1143,7 +1145,7 @@ subMenu:
         addNewEmployee();
         break;
     case 2:
-        employeeMenu();
+        manageEmployee();
         break;
 
     default:
@@ -1194,7 +1196,7 @@ viewSub:
     switch (choice)
     {
     case 1:
-        employeeMenu();
+        manageEmployee();
         break;
     case 2:
         menu();
@@ -1275,7 +1277,7 @@ updateSub:
         updateEmployeeInfo();
         break;
     case 2:
-        employeeMenu();
+        manageEmployee();
         break;
     case 3:
         menu();
@@ -1336,7 +1338,7 @@ deleteSub:
         deleteEmployeeInfo();
         break;
     case 2:
-        employeeMenu();
+        manageEmployee();
         break;
     case 3:
         menu();
@@ -1353,7 +1355,7 @@ deleteSub:
 // functions of sells management start here
 
 //  sells menu function
-void sellsMenu()
+void manageSale()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -1374,10 +1376,10 @@ returnToSellsMenu:
     switch (menuChoice)
     {
     case 1:
-        addNewSells();
+        addNewSell();
         break;
     case 2:
-        viewAllSells();
+        viewAllSales();
         break;
     case 3:
         updateSellsInfo();
@@ -1396,7 +1398,7 @@ returnToSellsMenu:
 }
 
 // add new sells info function
-void addNewSells()
+void addNewSell()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -1421,7 +1423,7 @@ void addNewSells()
     fflush(stdin);
     gets(sellsInfo.date);
 
-    saveSellsInfo();
+    saveSaleInfo();
 
 subMenu:
     printf("\n\t\t\t1. Do You Want To Add Another new Selling info?\n\t\t\t2. Sells Menu");
@@ -1433,10 +1435,10 @@ subMenu:
     switch (choice)
     {
     case 1:
-        addNewSells();
+        addNewSell();
         break;
     case 2:
-        sellsMenu();
+        manageSale();
         break;
 
     default:
@@ -1447,7 +1449,7 @@ subMenu:
 }
 
 // save sells info function
-void saveSellsInfo()
+void saveSaleInfo()
 {
     fileToOperate = fopen("sellsData.txt", "a");
     fwrite(&sellsInfo, sizeof(struct SellsInfo), 1, fileToOperate);
@@ -1463,7 +1465,7 @@ void saveSellsInfo()
 }
 
 // view all sells function
-void viewAllSells()
+void viewAllSales()
 {
     system("cls");
 
@@ -1478,7 +1480,7 @@ void viewAllSells()
     fclose(fileToOperate);
 
 viewSub:
-    printf("\n\t\t\t1. Sells Menu\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+    printf("\n\t\t\t1. Sells Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
@@ -1487,7 +1489,7 @@ viewSub:
     switch (choice)
     {
     case 1:
-        sellsMenu();
+        manageSale();
         break;
     case 2:
         menu();
@@ -1571,7 +1573,7 @@ updateSub:
         updateSellsInfo();
         break;
     case 2:
-        sellsMenu();
+        manageSale();
         break;
     case 3:
         menu();
@@ -1589,7 +1591,7 @@ updateSub:
     }
     else if (choice == 2)
     {
-        sellsMenu();
+        manageSale();
     }
     else if (choice == 3)
     {
@@ -1650,7 +1652,7 @@ deleteSub:
         deleteSellsInfo();
         break;
     case 2:
-        sellsMenu();
+        manageSale();
         break;
     case 3:
         menu();
@@ -1721,8 +1723,8 @@ void generateReport()
         printf("\n\tNET Loss : %.2f (BDT)\n", totalExpenses - totalSells);
     }
 
-redirReportSub:
-    printf("\n\t\t\t1. Do You Want To Generate Report For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Logout");
+reportSub:
+    printf("\n\t\t\t1. Do You Want To Generate Report For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
@@ -1744,7 +1746,7 @@ redirReportSub:
 
     default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirReportSub;
+        goto reportSub;
         break;
     }
 }
@@ -1803,7 +1805,7 @@ void priceEstimate()
         printf("\n\tThe Project is already in profit of %.2f (BDT)\n\n", lossOrProfit * -1);
     }
 
-redirReportSub:
+reportSub:
     printf("\n\t\t\t1. Do You Want To Estimate Price For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
@@ -1826,7 +1828,7 @@ redirReportSub:
 
     default:
         printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto redirReportSub;
+        goto reportSub;
         break;
     }
 }
