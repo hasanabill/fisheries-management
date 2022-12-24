@@ -17,13 +17,13 @@ void viewAllProject();
 void updateProject();
 void deleteProject();
 
-// managing expenses functions
-void manageExpense();
-void addNewExpense();
-void saveExpenseInfo();
-void viewAllExpenses();
-void updateExpenseInfo();
-void deleteExpenseInfo();
+// managing purchase functions
+void managePurchase();
+void addNewPurchase();
+void savePurchaseInfo();
+void viewAllPurchase();
+void updatePurchaseInfo();
+void deletePurchaseInfo();
 
 // managing feeding history functions
 void manageFeedHistory();
@@ -51,8 +51,6 @@ void deleteSellsInfo();
 
 // generate reports functions
 void generateReport();
-// price estimate calculations
-void priceEstimate();
 
 // defining ftructure
 struct Projects
@@ -126,8 +124,8 @@ login:
 void menu()
 {
     system("cls");
-    printf("\n\n\n **** Mazumdar's Agro & Frishries Admin Panel. **** \n\t1. Manage Projects  \n\t2. Manage Purchases.\n\t3. Manage Feeding History. \n\t4. Manage Employee \n\t5. Manage Sells \n\t6. Generate Report \n\t7. Price Estimation \n\t0. Exit.");
-    printf("\n\nChoose the options what you want to do (1/2/3/4/5/6/7/0): ");
+    printf("\n\n\n **** Mazumdar's Agro & Frishries Admin Panel. **** \n\t1. Manage Projects  \n\t2. Manage Purchases.\n\t3. Manage Feeding History. \n\t4. Manage Employee \n\t5. Manage Sells \n\t6. Generate Report \n\t0. Exit.");
+    printf("\n\nChoose the options what you want to do (1/2/3/4/5/6/0): ");
 
     int userChoice;
 
@@ -140,7 +138,7 @@ menuinput:
         manageProject();
         break;
     case 2:
-        manageExpense();
+        managePurchase();
         break;
     case 3:
         manageFeedHistory();
@@ -153,9 +151,6 @@ menuinput:
         break;
     case 6:
         generateReport();
-        break;
-    case 7:
-        priceEstimate();
         break;
     case 0:
         system("cls");
@@ -474,7 +469,7 @@ deleteSub:
 // Functions of expense management starts here
 
 // expense menu function
-void manageExpense()
+void managePurchase()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -495,16 +490,16 @@ expenseMenu:
     switch (menuChoice)
     {
     case 1:
-        addNewExpense();
+        addNewPurchase();
         break;
     case 2:
-        viewAllExpenses();
+        viewAllPurchase();
         break;
     case 3:
-        updateExpenseInfo();
+        updatePurchaseInfo();
         break;
     case 4:
-        deleteExpenseInfo();
+        deletePurchaseInfo();
         break;
     case 0:
         printf("\nBack Successfully\n");
@@ -517,7 +512,7 @@ expenseMenu:
 }
 
 // add new expense info function
-void addNewExpense()
+void addNewPurchase()
 {
     system("cls");
     printf("\n\n\n*****Mazumdar's Agro & Frisharies Admin Panel.*****\n\n");
@@ -542,7 +537,7 @@ void addNewExpense()
     fflush(stdin);
     scanf("%f", &expenseInfo.amount);
 
-    saveExpenseInfo();
+    savePurchaseInfo();
 
 subMenu:
     printf("\n\t\t\t1. Do You Want To Add Another new Expense info?\n\t\t\t2. Expense Menu");
@@ -554,10 +549,10 @@ subMenu:
     switch (choice)
     {
     case 1:
-        addNewExpense();
+        addNewPurchase();
         break;
     case 2:
-        manageExpense();
+        managePurchase();
         break;
 
     default:
@@ -568,7 +563,7 @@ subMenu:
 }
 
 // save expense info function
-void saveExpenseInfo()
+void savePurchaseInfo()
 {
     fileToOperate = fopen("expenseData.txt", "a");
     fwrite(&expenseInfo, sizeof(struct Expense), 1, fileToOperate);
@@ -584,7 +579,7 @@ void saveExpenseInfo()
 }
 
 // view all expenses function
-void viewAllExpenses()
+void viewAllPurchase()
 {
     system("cls");
 
@@ -599,7 +594,7 @@ void viewAllExpenses()
     fclose(fileToOperate);
 
 viewSub:
-    printf("\n\t\t\t1. Expense Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
+    printf("\n\t\t\t1. Purchase Menu\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
     printf("\n\t\t\tEnter Your Choose: ");
 
     int choice;
@@ -608,7 +603,7 @@ viewSub:
     switch (choice)
     {
     case 1:
-        manageExpense();
+        managePurchase();
         break;
     case 2:
         menu();
@@ -627,7 +622,7 @@ viewSub:
 }
 
 // update expense info function
-void updateExpenseInfo()
+void updatePurchaseInfo()
 {
     system("cls");
     printf("\n Update Project Information\n");
@@ -706,7 +701,7 @@ updateSub:
 }
 
 // delete expense info fuction
-void deleteExpenseInfo()
+void deletePurchaseInfo()
 {
     FILE *removeFile;
 
@@ -750,10 +745,10 @@ deleteSub:
     switch (choice)
     {
     case 1:
-        deleteExpenseInfo();
+        deletePurchaseInfo();
         break;
     case 2:
-        manageExpense();
+        managePurchase();
         break;
     case 3:
         menu();
@@ -1734,88 +1729,6 @@ reportSub:
     {
     case 1:
         generateReport();
-        break;
-    case 2:
-        menu();
-        break;
-    case 3:
-        system("cls");
-        printf("\n\n\t\t***** Thank You !! *****\n\n");
-        exit(0);
-        break;
-
-    default:
-        printf("\n\t\t\tInvalid Input! Please enter a valid choice");
-        goto reportSub;
-        break;
-    }
-}
-
-void priceEstimate()
-{
-    system("cls");
-
-    int pId;
-    float percentage;
-    char sign;
-    float totalExpenses = 0, totalSells = 0;
-    float lossOrProfit;
-
-    printf("\n\nPlease enter Project Id you want to estimate price: ");
-    fflush(stdin);
-    scanf("%d", &pId);
-
-    printf("\nPlease enter the Percentage you to make profit(X%%): ");
-    fflush(stdin);
-    scanf("%f%c", &percentage, &sign);
-
-    fileToOperate = fopen("expenseData.txt", "r");
-    while (fread(&expenseInfo, sizeof(struct Expense), 1, fileToOperate))
-    {
-        if (expenseInfo.projectId == pId)
-        {
-            totalExpenses += expenseInfo.amount;
-        }
-    }
-    fclose(fileToOperate);
-
-    fileToOperate = fopen("sellsData.txt", "r");
-    while (fread(&sellsInfo, sizeof(struct SellsInfo), 1, fileToOperate))
-    {
-        if (sellsInfo.projectId == pId)
-        {
-            totalSells += sellsInfo.amount;
-        }
-    }
-    fclose(fileToOperate);
-
-    lossOrProfit = (totalExpenses + (totalExpenses * (percentage / 100))) - totalSells;
-
-    printf("\n\n\t\t\t***** Price Estimation *****\n\n");
-    printf("\n\tProject Id : %d\n", pId);
-    printf("\n\tProject Total Sells Till Now : %.2f(BDT)\n", totalSells);
-    printf("\n\tProject Total Expenses Till Now : %.2f(BDT)\n", totalExpenses);
-
-    if (lossOrProfit > 0)
-    {
-        printf("\n\tTo do a profit of %.2f%% you need to have more %.2f (BDT) sells from this project.\n", percentage, lossOrProfit);
-    }
-    else
-    {
-        printf("\n\tThe Project is already in profit of %.2f (BDT)\n\n", lossOrProfit * -1);
-    }
-
-reportSub:
-    printf("\n\t\t\t1. Do You Want To Estimate Price For Another Project?\n\t\t\t2. Main Menu\n\t\t\t3. Exit");
-    printf("\n\t\t\tEnter Your Choose: ");
-
-    int choice;
-    scanf("%d", &choice);
-
-    switch (choice)
-    {
-    case 1:
-        priceEstimate();
         break;
     case 2:
         menu();
